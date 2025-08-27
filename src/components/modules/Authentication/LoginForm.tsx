@@ -10,7 +10,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
-import { error } from "console";
 import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -29,7 +28,7 @@ export function LoginForm({
     } catch (err) {
       console.error(err);
 
-      if (error.status === 401) {
+      if (err.status === 401) {
         toast.error("Your account is not verified");
         navigate("/verify", { state: data.email });
       }
